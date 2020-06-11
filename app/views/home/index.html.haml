@@ -3,7 +3,7 @@
     What do you want to learn today?
   
   .p-4
-  -if current_user
+  - if current_user
     = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
       .input-group
         = f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
