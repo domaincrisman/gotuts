@@ -1,12 +1,14 @@
 #User.create!(email: 'admin@example.com', password: 'Cadiar2020', password_confirmation: 'Cadiar2020')
 
-user = User.new(
-  email: 'admin2@example.com', 
-  password: 'Alameda2020', 
-  password_confirmation: 'Alameda2020'
-)
-user.skip_confirmation!
-user.save!
+# user = User.new(
+#   email: 'admin2@example.com', 
+#   password: 'Alameda2020', 
+#   password_confirmation: 'Alameda2020'
+# )
+# user.skip_confirmation!
+# user.save!
+
+PublicActivity.enabled = false
 
 30.times do
   Course.create!([{
@@ -19,3 +21,4 @@ user.save!
     price: Faker::Number.between(from: 15, to: 50)
   }])
 end
+PublicActivity.enabled = true
