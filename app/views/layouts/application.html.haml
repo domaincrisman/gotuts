@@ -2,8 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "width = device-width, initial-scale = 1.0", :name => "viewport"}/
-
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     -# %title GoTuts
     %title 
       = content_for?(:title) ? yield(:title) : "Gotuts"
@@ -14,8 +13,8 @@
   %body
     = render 'layouts/header'
     = render 'layouts/messages'
-    %p
     .container
+      %p
       = yield
     %br
     .bg-dark.text-white
