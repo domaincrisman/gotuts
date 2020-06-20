@@ -15,8 +15,11 @@
     = course.average_rating 
     -# Enrollments count:
     -# = course.enrollments.count
-    Counter cache Enrollments count:
+    /Counter cache Enrollments count:
+    (
+    .fa.fa-user-graduate
     = course.enrollments_count
+    )
   .card-footer
     .fa.fa-tasks
     = course.lessons.count  
