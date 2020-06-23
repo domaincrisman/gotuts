@@ -5,9 +5,9 @@
 
 = link_to 'Courses', courses_path
 \/
-= link_to @course.title, course_path(@course)
-%p
-
+= link_to course_path(@course) do
+  .fa.fa-graduation-cap
+  =@course.title
 .row
   .col-lg-8.order-1.order-lg-1
     .jumbotron
@@ -36,7 +36,8 @@
         = number_to_percentage(@course.progress(current_user), precision: 0)
     %ul.list-group
       - @lessons.each do |lesson|
-        = render 'lessons/lesson_preview', lesson: lesson
+        %li.list-group-item
+          = render 'lessons/lesson_preview', lesson: lesson
     %p
     %h4
       .fa.fa-comment
