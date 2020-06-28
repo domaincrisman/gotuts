@@ -31,7 +31,7 @@ class Course < ApplicationRecord
     LANGUAGES.map { |language| [language, language] }
   end
 
-  LEVELS = [:'Beginner', :'Intermediate', :'Advance']
+  LEVELS = [:'All levels', :'Beginner', :'Intermediate', :'Advance']
   def self.levels
     LEVELS.map { |level| [level, level] }
   end
