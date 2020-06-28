@@ -54,13 +54,16 @@
     .row
     Learn on your schedule
 %hr
-%h2
-  .fa.fa-user-graduate
-  Continue Learning
-.card-columns
-  - @purchased_courses.each do |course|
-    = render 'courses/course', course: course
-%hr
+
+- if current_user
+  %h2
+    .fa.fa-user-graduate
+    Continue Learning
+  .card-columns
+    - @purchased_courses.each do |course|
+      = render 'courses/course', course: course
+  %hr
+  
 %h2
   .fa.fa-chart-line
   Popular Courses

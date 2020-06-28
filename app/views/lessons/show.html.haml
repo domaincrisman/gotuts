@@ -1,18 +1,18 @@
 - content_for :title do
   GoTuts
-  \|
+  |
   Course
   = @course.title
-  \|
+  |
   Lesson
   = @lesson.title
 
 = link_to 'Courses', courses_path
-\/
+|
 = link_to course_path(@lesson.course) do
   .fa.fa-graduation-cap
   = @lesson.course.title
-\/
+|
 = link_to course_lesson_path(@course,@lesson) do
   .fa.fa-check-square
   = @lesson.title
@@ -32,6 +32,7 @@
         .row
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
+      
       - @lessons.each do |lesson|
         - if @lesson.present? && lesson == @lesson
           %li.list-group-item.list-group-item-success

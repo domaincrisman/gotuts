@@ -1,10 +1,10 @@
 - content_for :title do
   GoTuts
-  \|
+  |
   = @course.title
 
 = link_to 'Courses', courses_path
-\/
+|
 = link_to course_path(@course) do
   .fa.fa-graduation-cap
   =@course.title
@@ -34,9 +34,10 @@
       .float-right
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
-    %ul.list-group
+    %ul.list-group 
       - @lessons.each do |lesson|
-        = render 'lessons/lesson_preview', lesson: lesson
+        %li.list-group-item  
+          = render 'lessons/lesson_preview', lesson: lesson
     %p
     %h4
       .fa.fa-comment
