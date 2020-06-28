@@ -31,19 +31,19 @@ end
 
 gem "haml-rails", "~> 2.0"
 gem 'bootstrap', '~> 4.5.0'
-gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.13.0'
+gem 'jquery-rails' #for bootstrap to work
+gem 'font-awesome-sass', '~> 5.13.0' #add icons for styling
 gem 'simple_form'
-gem 'faker'
+gem 'faker' #fake data for seeds.rb
 gem 'devise'
 gem 'friendly_id', '~> 5.2.4'
-gem 'ransack'
+gem 'ransack' #filter and sort data
 gem 'rename'
-gem 'public_activity'
-gem "rolify"
-gem "pundit"
-gem 'exception_notification', group: :production
-gem 'pagy'
-gem "chartkick"
-gem 'groupdate'
-gem 'rails-erd', group: :development
+gem 'public_activity' #see all activity in the app
+gem "rolify" #give users roles
+gem "pundit" #authorization
+gem 'exception_notification', group: :production #notify if errors in production
+gem 'pagy' #pagination
+gem "chartkick" #charts
+gem 'groupdate' #group records by day/week/year
+gem 'rails-erd', group: :development #sudo apt-get install graphviz; bundle exec erd
