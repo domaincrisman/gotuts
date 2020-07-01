@@ -55,7 +55,7 @@
     Learn on your schedule
 %hr
 
-- if current_user
+- if current_user && current_user.enrollments.any?
   %h2
     .fa.fa-user-graduate
     Continue Learning
@@ -63,7 +63,7 @@
     - @purchased_courses.each do |course|
       = render 'courses/course', course: course
   .text-right
-    = link_to 'My purchased courses', purchased_courses_path
+    = link_to 'All my courses', learning_courses_path
   %hr
   
 %h2
