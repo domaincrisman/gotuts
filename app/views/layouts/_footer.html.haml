@@ -3,6 +3,23 @@
   .container
     .row
       .col-md-4
+        = link_to 'Teach on GoTuts', new_course_path
+        .row
+        GoTuts for business
+        .row
+        About us
+        .row
+      .col-md-4
+        Privacy policy
+        .row
+        Terms and conditions
+        .row
+        Careers
+        .row
+        Help and Support
+        .row
+        Blog
+      .col-md-4
         Copyright
         © 
         = Time.now.year
@@ -11,12 +28,4 @@
         .fa.fa-envelope
         = mail_to 'support@gotuts-crisman.herokuapp.com'
         .row
-      .col-md-4
-        Privacy policy
-        .row
-        Terms and conditions
-      .col-md-4
-        About us
-        .row
-        = link_to 'Teach on GoTuts', new_course_path
 %br 
