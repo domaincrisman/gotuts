@@ -71,5 +71,4 @@ Course.all.each do |course|
 
 end
 
-
 PublicActivity.enabled = true

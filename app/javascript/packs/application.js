@@ -20,5 +20,15 @@ import "bootstrap"
 require("trix")
 require("@rails/actiontext")
 
-require("chartkick")
+require("chartkick") // yarn add chartkick chart.js
 require("chart.js")
+
+import "../trix-editor-overrides"
+
+require("jquery") // yarn add jquery
+require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist 
+
+$( function() {
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
+} );
