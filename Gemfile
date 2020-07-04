@@ -48,3 +48,4 @@ gem "chartkick" #charts
 gem 'groupdate' #group records by day/week/year
 gem 'rails-erd', group: :development #sudo apt-get install graphviz; bundle exec erd
 gem 'ranked-model'
+gem 'pgreset'
