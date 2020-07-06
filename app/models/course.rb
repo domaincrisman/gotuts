@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   validates :title, :description, :short_description, :language, :level, :price, presence: true
   validates :description, length: { :minimum => 5 }
   validates :short_description, length: { :maximum => 300 }
+  
   belongs_to :user, counter_cache: true
   #Course.find_each { |user| User.reset_counters(user.id, :courses) }
 
@@ -20,8 +21,9 @@ class Course < ApplicationRecord
   scope :unapproved, -> { where(approved: false) }
 
   has_one_attached :avatar
-  validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
-            size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
+  validates :avatar, attached: true, 
+    content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+    size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
 
   def to_s
     title
