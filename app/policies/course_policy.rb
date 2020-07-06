@@ -44,5 +44,4 @@ class CoursePolicy < ApplicationPolicy
   def admin_or_owner?
     @user.has_role?(:admin) || @record.user == @user
   end
-
 end
