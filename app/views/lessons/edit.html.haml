@@ -1,19 +1,23 @@
 - content_for :title do
   GoTuts
-  \|
+  |
   Course
   = @course.title
-  \|
-  Edit lesson
+  |
+  Editing lesson
   = @lesson.title
 
 = link_to 'Courses', courses_path
-\/
-= link_to @lesson.course.title, course_path(@lesson.course)
-\/
-= link_to @lesson.title, course_lesson_path(@course,@lesson)
-\/
-Edit
+|
+= link_to course_path(@course) do
+  .fa.fa-graduation-cap
+  = @course.title
+|
+= link_to course_lesson_path(@course, @lesson) do
+  .fa.fa-check-square
+  = @lesson.title
+|
+= link_to 'Edit Lesson', edit_course_lesson_path(@course, @lesson)
 %p
 
 .card

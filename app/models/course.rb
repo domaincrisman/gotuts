@@ -25,6 +25,16 @@ class Course < ApplicationRecord
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
     size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
 
+  #validates :correct_avatar_type
+  #private
+  #def correct_avatar_type
+  #  if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png))
+  #    errors.add(:avatar, 'must be JPEG or PNG')
+  #  elsif avatar.attached? == false
+  #    errors.add(:avatar, 'required')
+  #  end
+  #end
+  
   def to_s
     title
   end
