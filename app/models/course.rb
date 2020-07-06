@@ -10,7 +10,8 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons
 
-  validates :title, uniqueness: true
+  validates :title, uniqueness: true, length: { :maximum => 70 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
 
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc) }
@@ -21,7 +22,8 @@ class Course < ApplicationRecord
   scope :unapproved, -> { where(approved: false) }
 
   has_one_attached :avatar
-  validates :avatar, attached: true, 
+  # validates :avatar, attached: true, 
+  validates :avatar, presence: true,
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
     size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
 
