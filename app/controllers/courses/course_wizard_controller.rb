@@ -6,6 +6,7 @@ class Courses::CourseWizardController < ApplicationController
   steps :basic_info, :details
 
   def show
+    authorize @course, :edit?
     @course = Course.friendly.find params[:course_id]
     # @user = current_user
     case step
@@ -17,6 +18,7 @@ class Courses::CourseWizardController < ApplicationController
   end
   
   def update
+    authorize @course, :edit?
     case step
     when :basic_info
       @course.update_attributes(course_params)
@@ -28,6 +30,7 @@ class Courses::CourseWizardController < ApplicationController
   end
 
   def finish_wizard_path
+    authorize @course, :edit?
     course_path(@course)
   end
 
