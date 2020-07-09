@@ -29,9 +29,9 @@
 
     = f.input :short_description
     -# = f.input :language, collection: [ "English", "Spanish", "Russian"]
-    = f.input :language, collection: Course.languages, include_blank: true
+    = f.input :language, collection: Course.languages, include_blank: true, as: :radio_buttons
     -# = f.input :level, collection: [ "Beginner", "Intermediate", "Advance"]
-    = f.input :level, collection: Course.levels, include_blank: true
+    = f.input :level, collection: Course.levels, include_blank: true, as: :radio_buttons
     = f.input :price
     = f.input :published
 
