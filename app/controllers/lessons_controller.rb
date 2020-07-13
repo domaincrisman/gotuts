@@ -28,7 +28,9 @@ class LessonsController < ApplicationController
   def show
     authorize @lesson
     current_user.view_lesson(@lesson)
-    @lessons = @course.lessons.rank(:row_order)
+    @lessons = @course.lessons.rank(:row_order)    
+    @comment = Comment.new
+    @comments = @lesson.comments
   end
   
   # GET /lessons/new
@@ -48,6 +50,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
     @lesson.course_id = @course.id
+    
     authorize @lesson
     respond_to do |format|
       if @lesson.save
