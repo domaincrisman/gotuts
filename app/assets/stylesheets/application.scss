@@ -4,7 +4,8 @@
 @import "font-awesome";
 @import "./actiontext.scss";
 
-// body{ background: #f8f0e6;}
+body { background: #FFFFFF; color: #515353}
+.card, .jumbotron, .list-group-item { color: #665c66}
 
 .form-control.is-invalid{ background-image: none; }
 .form-control.is-valid{ background-image: none; } 
