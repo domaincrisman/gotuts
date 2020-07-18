@@ -54,3 +54,4 @@ gem 'image_processing'
 gem 'wicked' #multistep forms
 gem "recaptcha"
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
