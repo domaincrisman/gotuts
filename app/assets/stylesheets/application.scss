@@ -10,9 +10,11 @@
 body { background: #FFFFFF; color: #515353}
 .card, .jumbotron, .list-group-item { color: #665c66}
 
+//hide simple_form checkmarks
 .form-control.is-invalid{ background-image: none; }
 .form-control.is-valid{ background-image: none; } 
 
+//highlight drag and drop
 .ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }
 
 //custom bootstrap button color
@@ -23,9 +25,6 @@ $mynewcolor:#563d7c;
 .btn-outline-custompurple {
     @include button-outline-variant($mynewcolor, #fff2f2, lighten($mynewcolor,5%), $mynewcolor);
 }
-
-
-
 
 //simple_form input for rich_text_area
 trix-editor.form-control {
