@@ -33,10 +33,10 @@ gem "haml-rails", "~> 2.0"
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails' #for bootstrap to work
 gem 'font-awesome-sass', '~> 5.13.0' #add icons for styling
-gem 'simple_form'
+gem 'simple_form' #creating forms made easier
 gem 'faker' #fake data for seeds.rb
 gem 'devise' #authentication as a User
-gem 'friendly_id', '~> 5.2.4'
+gem 'friendly_id', '~> 5.2.4' #nice URLs and hide IDs
 gem 'ransack' #filter and sort data
 gem 'rename'
 gem 'public_activity' #see all activity in the app
@@ -47,9 +47,9 @@ gem 'pagy' #pagination
 gem "chartkick" #yarn add chartkick chart.js
 gem 'groupdate' #group records by day/week/year
 gem 'rails-erd', group: :development #sudo apt-get install graphviz; bundle exec erd
-gem 'ranked-model'
-gem "aws-sdk-s3", require: false
-gem 'active_storage_validations'
+gem 'ranked-model' #give serial/index numbers to items in a list
+gem "aws-sdk-s3", require: false #save images and files in production
+gem 'active_storage_validations' #validate image and file uploads
 gem 'image_processing'
 gem 'wicked' #multistep forms
 gem "recaptcha"
