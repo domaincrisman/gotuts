@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :title, input_html: { autocomplete: 'off' }
-    
+    = f.label :tags
     = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }
         
     .row
