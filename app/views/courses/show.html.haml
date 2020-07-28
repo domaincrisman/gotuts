@@ -74,6 +74,3 @@ All courses tags
   - unless @course.tags.pluck(:id).intersection(course.tags.pluck(:id)).count.zero?
     .card-columns
       = render 'courses/course', course: course
-
-  
-
