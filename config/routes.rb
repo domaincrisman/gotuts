@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   
   resources :enrollments do
     get :teaching, on: :collection
+    member do
+      get :certificate
+    end
   end
 
   resources :tags, only: [:create, :index, :destroy]
@@ -30,7 +33,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :enrollments, only: [:new, :create]   
+    resources :enrollments, only: [:new, :create]
     resources :course_wizard, controller: 'courses/course_wizard'
   end
 
