@@ -57,4 +57,5 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-facebook'
 gem 'wicked_pdf' #PDF for Ruby on Rails
-gem 'wkhtmltopdf-binary' #PDF dependancy
+gem 'wkhtmltopdf-binary', group: :development #PDF dependancy
+gem 'wkhtmltopdf-heroku', group: :production #PDF dependancy

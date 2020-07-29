@@ -72,7 +72,7 @@ GEM
     autoprefixer-rails (9.8.5)
       execjs
     aws-eventstream (1.1.0)
-    aws-partitions (1.345.0)
+    aws-partitions (1.346.0)
     aws-sdk-core (3.104.3)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -347,6 +347,7 @@ GEM
     wicked_pdf (2.1.0)
       activesupport
     wkhtmltopdf-binary (0.12.6.2)
+    wkhtmltopdf-heroku (2.12.5.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -400,6 +401,7 @@ DEPENDENCIES
   wicked
   wicked_pdf
   wkhtmltopdf-binary
+  wkhtmltopdf-heroku
 
 RUBY VERSION
    ruby 2.7.1p83
