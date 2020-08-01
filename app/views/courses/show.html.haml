@@ -7,7 +7,7 @@
 |
 .fa.fa-graduation-cap
 = link_to course_path(@course) do
-  =@course.title
+  = @course.title
   
 .row
   .col-lg-8.order-1.order-lg-1
@@ -32,6 +32,9 @@
       .row
       .fa.fa-signal
       = @course.level
+      .row
+      .fa.fa-file-pdf
+      Certificate of Completion
       %hr
       = @course.description
 
@@ -42,6 +45,8 @@
       .float-right
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
+        /= certificate_button(@course)
+
     %ul.list-group.lesson-sortable
       - @lessons.each do |lesson|
         = content_tag "div", id: "lesson-#{lesson.id}", data: { model_name: lesson.class.name.underscore, update_url: course_lesson_sort_path(@course, lesson)} do
