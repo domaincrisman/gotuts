@@ -3,45 +3,47 @@
     %div{:style => "width:1150px; height:750px; padding:20px; text-align:center; border: 5px solid #563d7c"}
       %br
       %br
-      %br
-      %br
       %span{:style => "font-size:50px; font-weight:bold"} Certificate of Completion
+  
+      /%center
+      /  %h1 
+      /    Certificate of Completion
 
-      %br
       %br
       %br
       %br
       %p
       %h3
         This is to certify that the owner of the email address
-        %b
+      %h2
+        %u
           = @enrollment.user.email
+      %h3
         has successfully completed the course
-        %br
-        %br
-        %br
-        %br
-        %br
-        %b
+      %h2
+        %u
           = @enrollment.course.title
-        on the Gotuts.com platform
-
+      %h3
+        on the gotuts-crisman.com platform
+      
       %p
 
-      %br
       %br
       %br
       %br
       %br
       %b Certificate id: 
       #{@enrollment.slug}
-
+      
       %p
-
+      
       %b Certificate url: 
       #{request.base_url}#{request.original_fullpath}
 
-      %br
+      %p
+      %b Registration date: 
+      #{@enrollment.created_at.strftime('%d-%b-%Y')}
+      
       %br
       %br
       %br
