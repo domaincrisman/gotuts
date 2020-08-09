@@ -35,7 +35,7 @@ import "youtube"
 $(document).on('turbolinks:load', function(){
   $('.lesson-sortable').sortable({
     cursor: "grabbing",
-    cursorAt: { left: 10 },
+    // cursorAt: { left: 10 },
     placeholder: "ui-state-highlight",
     update: function(e, ui){
       let item = ui.item;

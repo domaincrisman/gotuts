@@ -80,22 +80,16 @@ class CoursesController < ApplicationController
     @tags = Tag.all
   end
 
-  # GET /courses/1/edit
-  def edit
-    authorize @course
-    @tags = Tag.all
-  end
-  
-  # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(course_params)
     authorize @course
+    @course.description = 'Curriculum Description'
+    @course.short_description = 'Marketing Description'
     @course.user = current_user
     
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to course_course_wizard_index_path(@course), notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
         @tags = Tag.all
@@ -105,24 +99,6 @@ class CoursesController < ApplicationController
     end
   end
   
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
-  def update
-    authorize @course
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        @tags = Tag.all
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
-  # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     authorize @course
     if @course.destroy
@@ -143,7 +119,8 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, 
-        :published, :language, :level, :price, :avatar, tag_ids:[])
+      #params.require(:course).permit(:title, :description, :short_description, 
+      #  :published, :language, :level, :price, :avatar, tag_ids:[])
+      params.require(:course).permit(:title)
     end
 end

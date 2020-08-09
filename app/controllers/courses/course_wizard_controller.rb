@@ -3,16 +3,16 @@ class Courses::CourseWizardController < ApplicationController
   before_action :set_progress, only: [:show, :update]
   before_action :set_course, only: [:show, :update, :finish_wizard_path]
 
-  steps :basic_info, :details
+  steps :basic_info, :details, :publish
 
   def show
     authorize @course, :edit?
-    @course = Course.friendly.find params[:course_id]
     # @user = current_user
     case step
     when :basic_info
     when :details
-      #@tags = Tag.all 
+      @tags = Tag.all 
+    when :publish      
     end
     render_wizard
   end
@@ -21,11 +21,11 @@ class Courses::CourseWizardController < ApplicationController
     authorize @course, :edit?
     case step
     when :basic_info
-      @course.update_attributes(course_params)
     when :details
-      #@tags = Tag.all 
-      @course.update_attributes(course_params)
+      @tags = Tag.all 
+    when :publish
     end
+    @course.update_attributes(course_params)
     render_wizard @course
   end
 
@@ -48,7 +48,7 @@ class Courses::CourseWizardController < ApplicationController
     end
     def course_params
       params.require(:course).permit(:title, :description, :short_description, 
-        :published, :language, :level, :price, :avatar)
+        :published, :language, :level, :price, :avatar, tag_ids: [])
     end
       
 end
