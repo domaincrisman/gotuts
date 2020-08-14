@@ -59,3 +59,4 @@ gem 'omniauth-facebook'
 gem 'wicked_pdf' #PDF for Ruby on Rails
 gem 'wkhtmltopdf-binary', group: :development #PDF dependancy
 gem 'wkhtmltopdf-heroku', group: :production #PDF dependancy
+gem "cocoon"

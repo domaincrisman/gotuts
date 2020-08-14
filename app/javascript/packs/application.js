@@ -30,6 +30,8 @@ require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist
 
 require("selectize")
 
+import "cocoon-js";
+
 import "youtube"
 
 $(document).on('turbolinks:load', function(){
