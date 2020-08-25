@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :nullify
   has_many :comments, dependent: :nullify
   
+  include PublicActivity::Model
+  tracked only:[:create, :destroy], owner: :itself
 
   after_create do
     UserMailer.new_user(self).deliver_later
