@@ -1,8 +1,9 @@
 class TagsController < ApplicationController
-
+  skip_before_action :authenticate_user!, :only => [:index]
+  
   def index
     @tags = Tag.all.order(course_tags_count: :desc)
-    authorize @tags
+    #authorize @tags #anybody can now see tags
   end
 
   def create
