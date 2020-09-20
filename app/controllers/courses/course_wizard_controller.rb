@@ -51,7 +51,7 @@ class Courses::CourseWizardController < ApplicationController
       @course = Course.friendly.find params[:course_id]
     end
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, 
+      params.require(:course).permit(:title, :description, :marketing_description, 
         :published, :language, :level, :price, :avatar, tag_ids: [],
         lessons_attributes: [:id, :title, :content, :_destroy])
     end
