@@ -7,8 +7,15 @@
 @import "selectize/dist/css/selectize";
 @import "selectize/dist/css/selectize.default";
 
-body { background: #FFFFFF; color: #515353}
-.card, .jumbotron, .list-group-item { color: #665c66}
+// body { background: #FFFFFF; color: #515353}
+// .card, .jumbotron, .list-group-item { color: #665c66}
+
+
+//light background
+body { background: #ffffff; }
+
+.purple-background { background-color: #563d7c; }
+.table { background: white; }
 
 //hide simple_form checkmarks
 .form-control.is-invalid{ background-image: none; }
