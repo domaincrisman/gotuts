@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :courses, dependent: :nullify
   has_many :enrollments, dependent: :nullify
   has_many :user_lessons, dependent: :nullify
+  has_many :students, through: :courses, source: :enrollments
   has_many :comments, dependent: :nullify
   
   include PublicActivity::Model

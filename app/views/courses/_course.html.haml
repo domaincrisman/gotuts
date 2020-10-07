@@ -8,8 +8,6 @@
         = image_tag course.avatar, height: "auto", width: "100%"
         /= image_tag course.avatar, height: "200px", width: "100%"
         /= image_tag course.avatar.variant(resize_to_limit: [100, 100])
-
-
   .card-footer
     %small= simple_format(course.marketing_description)
   .card-footer
@@ -36,9 +34,12 @@
         = course.lessons.count  
       .col-md-6
         .text-right
-          .fa.fa-chalkboard-teacher
+          /.fa.fa-chalkboard-teacher
           /by
-          = link_to course.user.username, user_path(course.user)
+          - if course.user 
+            - if course.user.image?
+              = image_tag course.user.image, size: '20x20', alt: "#{course.user.email}", class: 'rounded-circle'
+            = link_to course.user.username, user_path(course.user)
   /.card-footer
   /  .row
   /    .col-md-6
