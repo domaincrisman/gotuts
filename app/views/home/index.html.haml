@@ -26,15 +26,15 @@
   - if current_user
     = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
       .input-group
-        = f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
+        = f.search_field :title_cont, class: 'form-control-lg', style: 'float: left; width: 175px; ', placeholder: 'Find a course', :autocomplete => :off
         %span.input-group-append
-          %button.btn.btn-primary.btn-sm{:type => "submit"}
+          %button.btn.btn-primary.btn-lg{:type => "submit"}
             %span.fa.fa-search{"aria-hidden" => "true"}
   - else
     %h3.text-shadow Join to access all the courses
     .p-2
-    = link_to 'Register', new_user_registration_path, class: 'btn btn-outline-custompurple btn-lg'
-    = link_to 'Login', new_user_session_path, class: 'btn btn-outline-custompurple btn-lg'
+    = link_to 'Register', new_user_registration_path, class: 'btn btn-custom-purple btn-lg'
+    = link_to 'Login', new_user_session_path, class: 'btn btn-custom-purple btn-lg'
     .row.mt-1
     = link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger btn-lg mr-1' do
       Continue with
@@ -58,7 +58,7 @@
 
 .card-group.shadow
   .card
-    .card.card-body
+    .card-body
       %h1
         .fa.fa-graduation-cap
       = pluralize(Course.approved.published.count, 'online courses')
@@ -67,7 +67,7 @@
       .row
       %small Explore a variety of fresh topics
   .card
-    .card.card-body
+    .card-body
       %h1
         .fa.fa-chalkboard-teacher
         /.fa.fa-brain
@@ -77,7 +77,7 @@
       .row
       %small Find the right instructor for you
   .card
-    .card.card-body
+    .card-body
       %h1
         .fa.fa-user-graduate
       = pluralize(User.count, 'active learners')
@@ -86,7 +86,7 @@
       .row
       %small Join the knowledge sharing community
   .card
-    .card.card-body
+    .card-body
       %h1
         .fa.fa-infinity
       Lifetime access
@@ -164,21 +164,21 @@
 %br
 .card-group.shadow
   .card
-    .card.card-body
+    .card-body
       %b
         .far.fa-clock
         Go at your own pace
       %small
         Enjoy lifetime access to courses on Gotuts’s website and app
   .card
-    .card.card-body
+    .card-body
       %b
         .far.fa-check-circle
         Learn from industry experts
       %small
         Select from top instructors around the world
   .card
-    .card.card-body
+    .card-body
       %b
         .far.fa-play-circle
         Find video courses on almost any topic
