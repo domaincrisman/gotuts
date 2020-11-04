@@ -52,10 +52,10 @@
       .fa.fa-tasks
       = pluralize(@course.lessons_count, 'lesson')
       /= @course.lessons_count
-      .float-right
-        .fa.fa-spinner
-        = number_to_percentage(@course.progress(current_user), precision: 0)
-        /= certificate_button(@course)
+      /.float-right
+      /  .fa.fa-spinner
+      /  = number_to_percentage(@course.progress(current_user), precision: 0)
+      /  /= certificate_button(@course)
 
     .list-group.lesson-sortable.shadow
       - @lessons.each do |lesson|
