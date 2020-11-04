@@ -10,13 +10,17 @@ class Lesson < ApplicationRecord
 
   has_rich_text :content
   has_one_attached :video
-  has_one_attached :video_thumbnail
   validates :video,
-    content_type: ['video/mp4'], 
-    size: { less_than: 50.megabytes , message: 'size should be under 500 kilobytes' }
-  validates :video_thumbnail,
-  content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
-  size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
+    content_type: ["video/mp4"],
+    size: {less_than: 50.megabytes, message: "size should be under 50 megabytes"}
+  
+  # has_one_attached :video_thumbnail
+  # validates :video,
+  #   content_type: ['video/mp4'], 
+  #   size: { less_than: 50.megabytes , message: 'size should be under 500 kilobytes' }
+  # validates :video_thumbnail,
+  # content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+  # size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
   
   # validates :video_thumbnail, presence: true, if: :video_present?
   # def video_present?
