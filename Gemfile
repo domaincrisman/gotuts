@@ -30,9 +30,9 @@ group :test do
 end
 
 gem "haml-rails", "~> 2.0"
-gem 'bootstrap', '~> 4.5.0'
-gem 'jquery-rails' #for bootstrap to work
-gem 'font-awesome-sass', '~> 5.13.0' #add icons for styling
+#gem 'bootstrap', '~> 4.5.0'
+#gem 'jquery-rails' #for bootstrap to work
+#gem 'font-awesome-sass', '~> 5.13.0' #add icons for styling
 gem 'simple_form' #creating forms made easier
 gem 'faker' #fake data for seeds.rb
 gem 'devise' #authentication as a User
