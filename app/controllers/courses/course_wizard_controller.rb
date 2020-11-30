@@ -14,6 +14,9 @@ class Courses::CourseWizardController < ApplicationController
       @tags = Tag.all 
     when :pricing
     when :lessons
+      unless @course.lessons.any?
+        @course.lessons.build
+      end
     when :publish      
     end
     render_wizard
