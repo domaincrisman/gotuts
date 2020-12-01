@@ -1,10 +1,13 @@
 %br 
 %footer.footer.bg-dark.text-white
-  .container
+  .container-fluid
     %br
     .row
       .col-md-4
-        = link_to 'Teach on GoTuts', new_course_path
+        .row
+        = link_to 'GoTuts', root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}"
+        .row
+        = link_to 'Teach on GoTuts', new_course_path, class: "#{'active font-weight-bold' if current_page?(new_course_path)}"
         .row
         GoTuts for business
         .row
@@ -21,9 +24,10 @@
         .row
         Blog
       .col-md-4
-        Copyright
-        © 
-        = Time.now.year
+        \#{Time.now.year}
+        %br/
+        = link_to t('navigation.home'), root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}"
+        %br/
         GoTuts
         .row
         .fa.fa-envelope
