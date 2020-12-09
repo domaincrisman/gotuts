@@ -6,16 +6,16 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    @record.published && @record.approved || 
-    @user.present? && @user.has_role?(:admin) || 
-    @user.present? && @record.user_id == @user.id ||
-    @user.present? && @record.bought(@user)
+    @record.published && @record.approved ||
+      @user.present? && @user.has_role?(:admin) ||
+      @user.present? && @record.user_id == @user.id ||
+      @user.present? && @record.bought(@user)
   end
 
   def edit?
     @record.user == @user
   end
-  
+
   def update?
     @record.user == @user
   end
@@ -29,8 +29,8 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.user == @user && @record.enrollments.none? || @user.has_role?(:admin) && @record.enrollments.none? 
-    #@user.has_role?(:admin) || @record.user == @user
+    @record.user == @user && @record.enrollments.none? || @user.has_role?(:admin) && @record.enrollments.none?
+    # @user.has_role?(:admin) || @record.user == @user
   end
 
   def approve?
@@ -40,7 +40,7 @@ class CoursePolicy < ApplicationPolicy
   def owner?
     @record.user == @user
   end
-  
+
   def admin_or_owner?
     @user.has_role?(:admin) || @record.user == @user
   end

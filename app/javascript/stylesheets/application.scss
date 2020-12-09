@@ -50,6 +50,12 @@ $custompurple:#563d7c;
   border-color: $custompurple;
 }
 
+.alert.alert-success {
+  color: #155724;
+  background-color: #FFC107;
+  border-color: #FFC107;
+}
+
 //no action_text attachment button
 //.trix-button-group--file-tools { display: none !important; }
 

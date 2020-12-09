@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  
+
   def index
     @q = User.ransack(params[:q])
     @pagy, @users = pagy(@q.result(distinct: true).order(created_at: :desc))
@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   def edit
     authorize @user
   end
-  
+
   def update
     authorize @user
     if @user.update(user_parms)
-      redirect_to users_path, notice: 'User roles were successfully updated'
+      redirect_to users_path, notice: "User roles were successfully updated"
     else
       render :edit
     end
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.friendly.find(params[:id])
   end
+
   def user_parms
     params.require(:user).permit({role_ids: []})
   end

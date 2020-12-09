@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def create
     @comment = Comment.new(comment_params)
     @course = Course.friendly.find(params[:course_id])
@@ -10,10 +9,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         CommentMailer.new_comment(@comment).deliver_later
-        format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully created.' }
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render 'lessons/comments/new' }
+        format.html { render "lessons/comments/new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -26,13 +25,14 @@ class CommentsController < ApplicationController
     authorize @comment
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:content)
-    end
-end 
+
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
+end

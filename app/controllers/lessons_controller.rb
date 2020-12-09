@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
     authorize @lesson, :edit?
     @lesson.video.purge
     @lesson.video_thumbnail.purge
-    redirect_to edit_course_lesson_path(@course, @lesson), notice: 'Video successfully deleted!'
+    redirect_to edit_course_lesson_path(@course, @lesson), notice: "Video successfully deleted!"
   end
 
   def sort
@@ -15,7 +15,6 @@ class LessonsController < ApplicationController
     lesson.update(lesson_params)
     render body: nil
   end
-
 
   # GET /lessons
   # GET /lessons.json
@@ -28,33 +27,33 @@ class LessonsController < ApplicationController
   def show
     authorize @lesson
     current_user.view_lesson(@lesson)
-    @lessons = @course.lessons.rank(:row_order)    
+    @lessons = @course.lessons.rank(:row_order)
     @comment = Comment.new
     @comments = @lesson.comments.order(created_at: :desc)
   end
-  
+
   # GET /lessons/new
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params[:course_id])
   end
-  
+
   # GET /lessons/1/edit
   def edit
     authorize @lesson
   end
-  
+
   # POST /lessons
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
     @lesson.course_id = @course.id
-    
+
     authorize @lesson
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to course_lesson_path(@course,@lesson), notice: 'Lesson was successfully created.' }
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully created." }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -69,7 +68,7 @@ class LessonsController < ApplicationController
     authorize @lesson
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to course_lesson_path(@course,@lesson), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully updated." }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -84,20 +83,21 @@ class LessonsController < ApplicationController
     authorize @lesson
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to course_path(@course), notice: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to course_path(@course), notice: "Lesson was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lesson
-      @course = Course.friendly.find(params[:course_id])
-      @lesson = Lesson.friendly.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lesson_params
-      params.require(:lesson).permit(:title, :content, :row_order_position, :video, :video_thumbnail)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lesson
+    @course = Course.friendly.find(params[:course_id])
+    @lesson = Lesson.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lesson_params
+    params.require(:lesson).permit(:title, :content, :row_order_position, :video, :video_thumbnail)
+  end
 end
