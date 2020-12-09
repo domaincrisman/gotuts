@@ -10,40 +10,39 @@ class User < ApplicationRecord
   has_many :courses, dependent: :nullify
   has_many :enrollments, dependent: :nullify
   has_many :user_lessons, dependent: :nullify
-  has_many :students, through: :courses, source: :enrollments
   has_many :comments, dependent: :nullify
-  
-  include PublicActivity::Model
-  tracked only:[:create, :destroy], owner: :itself
-
+  has_many :students, through: :courses, source: :enrollments
+    
   after_create do
     UserMailer.new_user(self).deliver_later
   end
+
+  include PublicActivity::Model
+  tracked only:[:create, :destroy], owner: :itself
 
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
 
-    # Uncomment the section below if you want users to be created if they don't exist
     unless user
       user = User.create(
           email: data['email'],
           password: Devise.friendly_token[0,20],
-          confirmed_at: Time.now # autoconfirm user from omniauth
       )
-    else
-      user.name = access_token.info.name
-      user.image = access_token.info.image
-      user.provider = access_token.provider
-      user.uid = access_token.uid
-      user.token = access_token.credentials.token
-      user.expires_at = access_token.credentials.expires_at
-      user.expires = access_token.credentials.expires
-      user.refresh_token = access_token.credentials.refresh_token
-      user.save!
     end
+    
+    user.name = access_token.info.name
+    user.image = access_token.info.image
+    user.provider = access_token.provider
+    user.uid = access_token.uid
+    user.token = access_token.credentials.token
+    user.expires_at = access_token.credentials.expires_at
+    user.expires = access_token.credentials.expires
+    user.refresh_token = access_token.credentials.refresh_token
+    user.confirmed_at = Time.now #autoconfirm user from omniauth
+    
     user
-end
+  end
 
   def to_s
     email
@@ -62,6 +61,7 @@ end
       self.id
     end
   end
+  
   after_create :assign_default_role
 
   def assign_default_role
