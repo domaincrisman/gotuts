@@ -52,13 +52,14 @@ gem "ranked-model" # give serial/index numbers to items in a list
 gem "aws-sdk-s3", require: false # save images and files in production
 gem "active_storage_validations" # validate image and file uploads
 gem "image_processing"
-gem "wicked" # multistep forms
 gem "recaptcha"
-gem "omniauth-google-oauth2"
-gem "omniauth-github", github: "omniauth/omniauth-github", branch: "master"
-gem "omniauth-facebook"
 gem "wicked_pdf" # PDF for Ruby on Rails
 gem "wkhtmltopdf-binary", group: :development # PDF dependancy
 gem "wkhtmltopdf-heroku", group: :production # PDF dependancy
-gem "cocoon"
-gem "stripe"
+gem "wicked" # multistep forms
+gem "omniauth-google-oauth2"
+gem "omniauth-github", github: "omniauth/omniauth-github", branch: "master"
+gem "omniauth-facebook" # sign in with facebook
+gem "cocoon" # nested forms
+gem "stripe" # accept payments 
+gem 'sitemap_generator' # SEO and webmasters
