@@ -4,15 +4,13 @@
     %br
     .row
       .col-md-4
+        = link_to "Blog", "https://blog.corsego.com", target: :_blank
         .row
-        = link_to 'GoTuts', root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}"
-        \#{Time.now.year}
-        %br/
         = link_to 'Teach on GoTuts', new_course_path, class: "#{'active font-weight-bold' if current_page?(new_course_path)}"
         .row
-        GoTuts for business
+        = link_to 'About us', about_path
         .row
-        About us
+        GoTuts for business
         .row
       .col-md-4
         = link_to 'Privacy policy', privacy_policy_path
@@ -22,8 +20,6 @@
         Careers
         .row
         Help and Support
-        .row
-        Blog
       .col-md-4
         .row
         .fa.fa-envelope
