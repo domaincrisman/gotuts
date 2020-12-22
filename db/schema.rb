@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_153156) do
+ActiveRecord::Schema.define(version: 2020_12_22_135912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 2020_11_28_153156) do
     t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient_type_and_recipient_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "chapters", force: :cascade do |t|
+    t.integer "row_order"
+    t.string "title"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_chapters_on_course_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -213,6 +222,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_153156) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chapters", "courses"
   add_foreign_key "comments", "lessons"
   add_foreign_key "comments", "users"
   add_foreign_key "course_tags", "courses"
