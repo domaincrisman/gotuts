@@ -1,10 +1,9 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:edit, :update, :destroy]
+  before_action :set_chapter, only: [:new, :edit, :update, :destroy]
 
   # GET /chapters/new
   def new
     @chapter = Chapter.new
-    @course = Course.friendly.find(params[:course_id])
   end
 
   def edit
