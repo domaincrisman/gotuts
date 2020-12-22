@@ -5,8 +5,8 @@
 
 = link_to 'Courses', courses_path
 |
-.fa.fa-graduation-cap
 = link_to course_path(@course) do
+  .fa.fa-graduation-cap
   = @course.title
   
 .row
@@ -15,11 +15,10 @@
       %h3
         .fa.fa-graduation-cap
         = @course.title
-        -# .row
-        -# - if @course.avatar.attached?
-          -# = image_tag @course.avatar, width: "200px"
       %hr
-      
+      .fa.fa-book
+      = pluralize(@course.chapters_count, 'Chapter')
+      .row
       .fa.fa-tasks
       = pluralize(@course.lessons_count, 'Lesson')
       .row
@@ -50,15 +49,20 @@
       Full Lifetime Access & Updates
       %hr
       = @course.description
+    %h4
+      .fa.fa-book
+      = pluralize(@course.chapters_count, 'chapter')
+
+    .list-group.shadow
+      - @chapters.each do |chapter|
+        .list-group-item
+          = render 'chapters/chapter_preview', chapter: chapter
+
+    %hr
 
     %h4
       .fa.fa-tasks
       = pluralize(@course.lessons_count, 'lesson')
-      /= @course.lessons_count
-      /.float-right
-      /  .fa.fa-spinner
-      /  = number_to_percentage(@course.progress(current_user), precision: 0)
-      /  /= certificate_button(@course)
 
     .list-group.lesson-sortable.shadow
       - @lessons.each do |lesson|
@@ -69,7 +73,6 @@
     %h4
       .fa.fa-comment
       = pluralize(@enrollments_with_review.count, 'review')
-      /= @enrollments_with_review.count
     
     - @enrollments_with_review.each do |enrollment|
       = render 'enrollments/enrollment', enrollment: enrollment
@@ -83,11 +86,6 @@
 %h4 
   .fa.fa-graduation-cap
   Related courses
--# Current course tags
--# = @course.tags.pluck(:id)
-
--# .row
--# All course tags
 
 .row
   - Course.approved.published.where.not(id: @course.id).each do |course|

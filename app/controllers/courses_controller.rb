@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :approve, :analytics]
-
+  before_action :prepare_index, only: [:index, :learning, :pending_review, :teaching, :unapproved]
   # GET /courses
   # GET /courses.json
   def index
@@ -70,6 +70,7 @@ class CoursesController < ApplicationController
   def show
     authorize @course
     @lessons = @course.lessons.rank(:row_order)
+    @chapters = @course.chapters.rank(:row_order)
     @enrollments_with_review = @course.enrollments.reviewed
   end
 
@@ -77,7 +78,6 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     authorize @course
-    @tags = Tag.all
   end
 
   def create
@@ -90,7 +90,6 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully created."
     else
-      @tags = Tag.all
       render :new
     end
   end
@@ -109,15 +108,16 @@ class CoursesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def prepare_index
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user, :course_tags, course_tags: :tag))
+    @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
+  end
+
   def set_course
     @course = Course.friendly.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def course_params
-    # params.require(:course).permit(:title, :description, :marketing_description,
-    #  :published, :language, :level, :price, :avatar, tag_ids:[])
     params.require(:course).permit(:title)
   end
 end

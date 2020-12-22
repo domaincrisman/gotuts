@@ -1,24 +1,23 @@
 Rails.application.routes.draw do
-  resources :chapters
   # devise_for :users
   devise_for :users, controllers: {registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks"}
-
+  
   root "home#index"
   get "home/index"
   get "activity", to: "home#activity"
   get "analytics", to: "home#analytics"
   get "privacy_policy", to: "home#privacy_policy"
   get "about", to: "home#about"
-
+  
   resources :enrollments do
     get :teaching, on: :collection
     member do
       get :certificate
     end
   end
-
+  
   resources :tags, only: [:create, :index, :destroy]
-
+  
   resources :courses, except: [:edit] do
     get :learning, :pending_review, :teaching, :unapproved, on: :collection
     member do
@@ -26,6 +25,8 @@ Rails.application.routes.draw do
       patch :approve
     end
 
+    resources :chapters, except: [:index, :show]
+    
     resources :lessons, except: [:index] do
       resources :comments, except: [:index]
       put :sort
