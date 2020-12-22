@@ -4,7 +4,7 @@ class Courses::CourseWizardController < ApplicationController
   before_action :set_course, only: [:show, :update, :finish_wizard_path]
 
   # steps :basic_info, :details, :lessons, :publish
-  steps :landing_page, :targeting, :pricing, :lessons, :publish
+  steps :landing_page, :targeting, :pricing, :chapters, :lessons, :publish
   def show
     authorize @course, :edit?
     # @user = current_user
@@ -13,6 +13,10 @@ class Courses::CourseWizardController < ApplicationController
     when :targeting
       @tags = Tag.all
     when :pricing
+    when :chapters
+      unless @course.chapters.any?
+        @course.chapters.build
+      end
     when :lessons
       unless @course.lessons.any?
         @course.lessons.build
@@ -29,6 +33,7 @@ class Courses::CourseWizardController < ApplicationController
     when :targeting
       @tags = Tag.all
     when :pricing
+    when :chapters
     when :lessons
     when :publish
     end
@@ -58,6 +63,7 @@ class Courses::CourseWizardController < ApplicationController
   def course_params
     params.require(:course).permit(:title, :description, :marketing_description,
       :published, :language, :level, :price, :avatar, tag_ids: [],
-                                                      lessons_attributes: [:id, :title, :content, :_destroy])
+      chapters_attributes: [:id, :title, :_destroy],
+      lessons_attributes: [:id, :chapter_id, :title, :content, :_destroy])
   end
 end

@@ -12,7 +12,8 @@ class Course < ApplicationRecord
   has_many :course_tags, inverse_of: :course, dependent: :destroy
   has_many :tags, through: :course_tags
   has_many :comments, through: :lessons
-
+  
+  accepts_nested_attributes_for :chapters, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :lessons, reject_if: :all_blank, allow_destroy: true
 
   validates :title, uniqueness: true, length: {maximum: 70}
