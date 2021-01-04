@@ -62,4 +62,4 @@ gem "omniauth-github", github: "omniauth/omniauth-github", branch: "master"
 gem "omniauth-facebook" # sign in with facebook
 gem "cocoon" # nested forms
 gem "stripe" # accept payments 
-gem 'sitemap_generator' # SEO and webmasters
+gem "sitemap_generator" # SEO and webmasters
