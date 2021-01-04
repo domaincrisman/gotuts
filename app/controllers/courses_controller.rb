@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :approve, :analytics]
-  before_action :prepare_tags, only: [:index, :learning, :pending_review, :teaching, :unapproved]
+  before_action :set_tags, only: [:index, :learning, :pending_review, :teaching, :unapproved]
 
   def index
     @ransack_path = courses_path
@@ -37,8 +37,18 @@ class CoursesController < ApplicationController
     render "index"
   end
 
+  def show
+    authorize @course
+    @chapters = @course.chapters.rank(:row_order).includes(:lessons)
+    @enrollments_with_review = @course.enrollments.reviewed
+  end
+
+  def analytics
+    authorize @course, :analytics? # admin_or_owner
+  end
+
   def approve
-    authorize @course, :approve?
+    authorize @course, :approve? # admin
     if @course.approved?
       @course.update_attribute(:approved, false)
     else
@@ -46,16 +56,6 @@ class CoursesController < ApplicationController
     end
     CourseMailer.approved(@course).deliver_later
     redirect_to @course, notice: "Course approval: #{@course.approved}"
-  end
-
-  def analytics
-    authorize @course, :owner?
-  end
-
-  def show
-    authorize @course
-    @chapters = @course.chapters.rank(:row_order).includes(:lessons)
-    @enrollments_with_review = @course.enrollments.reviewed
   end
 
   # GET /courses/new
@@ -92,7 +92,7 @@ class CoursesController < ApplicationController
 
   private
 
-  def prepare_tags
+  def set_tags
     @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
   end
 

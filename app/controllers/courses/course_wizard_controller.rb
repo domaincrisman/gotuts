@@ -61,8 +61,12 @@ class Courses::CourseWizardController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :marketing_description,
-      :published, :language, :level, :price, :avatar, tag_ids: [],
+    params.require(:course).permit(
+      :title, :avatar, :marketing_description, :description, 
+      :language, :level, 
+      :price,  
+      :published, 
+      tag_ids: [],
       chapters_attributes: [:id, :title, :_destroy],
       lessons_attributes: [:id, :chapter_id, :title, :content, :_destroy])
   end
