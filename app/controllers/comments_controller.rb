@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
     authorize @comment
     @comment.destroy
     redirect_to course_lesson_path(@course, @lesson), notice: "Comment was successfully destroyed."
-    end
   end
 
   private
