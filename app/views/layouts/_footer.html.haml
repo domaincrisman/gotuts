@@ -4,22 +4,21 @@
     %br
     .row
       .col-md-4
-        = link_to "Blog", "https://blog.corsego.com", target: :_blank
+        = link_to "https://blog.corsego.com", target: :_blank do
+          Blog
+          .fa.fa-external-link-alt
         .row
-        = link_to 'Teach on GoTuts', new_course_path, class: "#{'active font-weight-bold' if current_page?(new_course_path)}"
+        = link_to "https://saas.corsego.com", target: :_blank do
+          SaaS boilerplate
+          .fa.fa-external-link-alt
         .row
-        = link_to 'About us', about_path
-        .row
-        GoTuts for business
-        .row
+        = link_to 'Teach on GoTuts', new_course_path
       .col-md-4
-        = link_to 'Privacy policy', privacy_policy_path
+        = link_to 'About', about_path
         .row
-        Terms and conditions
+        = link_to 'Privacy', privacy_path
         .row
-        Careers
-        .row
-        Help and Support
+        = link_to 'Terms', terms_path
       .col-md-4
         .row
         .fa.fa-envelope
