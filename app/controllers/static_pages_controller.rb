@@ -5,7 +5,6 @@ class StaticPagesController < ApplicationController
     @latest = Course.latest.published.approved.limit(2)
     @top_rated = Course.top_rated.published.approved.limit(2)
     @popular = Course.popular.published.approved.limit(2)
-    # @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)
     if current_user
       @learning_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(2)
       @teaching_courses = current_user.courses.limit(2)
@@ -22,11 +21,7 @@ class StaticPagesController < ApplicationController
   end
 
   def analytics
-    if current_user.has_role?(:admin)
-      # @users = User.all
-      # @enrollments = Enrollment.all
-      # @courses = Course.all
-    else
+    unless current_user.has_role?(:admin)
       redirect_to root_path, alert: "You are not authorized to access this page"
     end
   end
@@ -34,6 +29,9 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
+  def terms
+  end
+  
   def about
   end
 end

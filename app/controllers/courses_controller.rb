@@ -58,7 +58,6 @@ class CoursesController < ApplicationController
     redirect_to @course, notice: "Course approval: #{@course.approved}"
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
     authorize @course
@@ -81,10 +80,7 @@ class CoursesController < ApplicationController
   def destroy
     authorize @course
     if @course.destroy
-      respond_to do |format|
-        format.html { redirect_to teaching_courses_path, notice: "Course was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      redirect_to teaching_courses_path, notice: "Course was successfully destroyed."
     else
       redirect_to @course, alert: "Course has enrollments. Can not be destroyed"
     end
