@@ -15,7 +15,7 @@ body { background: #F0F8FF; }
 //white background for all tables
 .table { background: white; }
 
-//.container { max-width: 1400px;}
+.container { max-width: 1400px;}
 //dark background style
 //body { background: #2a4054; color: #ebedf0; }
 //.card, .jumbotron, .list-group-item { color: #2a4054; }
@@ -86,3 +86,10 @@ body {
 footer {
   margin-top: auto;
 }
+
+// lesson show - scrollable lessons list
+#scrollable{
+  max-height: 100vh;
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
+} 
