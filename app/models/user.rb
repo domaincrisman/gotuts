@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :students, through: :courses, source: :enrollments
   has_many :lessons, through: :user_lessons # lessons viewed by the user
 
+  has_many :enrolled_courses, through: :enrollments, source: :course
+
   after_create do
     UserMailer.new_user(self).deliver_later
   end
@@ -87,6 +89,10 @@ class User < ApplicationRecord
     view.increment!(:impressions)
   end
 
+  def bought?(course)
+    enrolled_courses.include?(course)
+  end
+  
   def viewed?(lesson)
     lessons.include?(lesson)
   end
