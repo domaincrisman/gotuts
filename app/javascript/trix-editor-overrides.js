@@ -23,3 +23,10 @@ window.addEventListener("trix-file-accept", function(event) {
     alert("Only support attachment files upto size 9MB!")
   }
 })
+
+// open all ActionText Trix links in new tab
+$(document).ready(function() {
+  $(".trix-content a").click(function(e) {
+      $(this).attr("target","_blank");
+  });
+}); 
