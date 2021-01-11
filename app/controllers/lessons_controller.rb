@@ -27,6 +27,7 @@ class LessonsController < ApplicationController
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params[:course_id])
+    @lesson.course_id = @course.id #for authorization
     authorize @lesson
   end
 
@@ -70,6 +71,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :content, :row_order_position, :video, :chapter_id)
+    params.require(:lesson).permit(:title, :content, :row_order_position, :video, :chapter_id, :vimeo)
   end
 end
