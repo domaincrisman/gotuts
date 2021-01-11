@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :nullify
   has_many :comments, dependent: :nullify
   has_many :students, through: :courses, source: :enrollments
+  has_many :lessons, through: :user_lessons # lessons viewed by the user
 
   after_create do
     UserMailer.new_user(self).deliver_later
@@ -82,12 +83,12 @@ class User < ApplicationRecord
   end
 
   def view_lesson(lesson)
-    user_lesson = user_lessons.where(lesson: lesson)
-    if user_lesson.any?
-      user_lesson.first.increment!(:impressions)
-    else
-      user_lessons.create(lesson: lesson)
-    end
+    view = user_lessons.find_or_create_by(lesson: lesson)
+    view.increment!(:impressions)
+  end
+
+  def viewed?(lesson)
+    lessons.include?(lesson)
   end
 
   def calculate_course_income
