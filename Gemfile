@@ -39,7 +39,6 @@ gem "faker" # fake data for seeds.rb
 gem "devise" # authentication as a User
 gem "friendly_id", "~> 5.2.4" # nice URLs and hide IDs
 gem "ransack" # filter and sort data
-gem "rename"
 gem "public_activity" # see all activity in the app
 gem "rolify" # give users roles (admin, teacher, student)
 gem "pundit" # authorization (different roles have different accesses)
