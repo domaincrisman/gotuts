@@ -185,8 +185,10 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nio4r (2.5.7)
+    nio4r (2.5.8)
     nokogiri (1.11.7-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -220,7 +222,7 @@ GEM
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
     public_suffix (4.0.6)
-    puma (4.3.8)
+    puma (4.3.11)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -383,6 +385,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations
@@ -407,7 +410,7 @@ DEPENDENCIES
   pagy
   pg (>= 0.18, < 2.0)
   public_activity
-  puma (~> 4.1)
+  puma (~> 4.3)
   pundit
   rails (~> 6.0.3.4)
   rails-erd
